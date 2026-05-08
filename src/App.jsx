@@ -1,7 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { BackgroundEffects } from './components/background-effects'
 import { CustomCursor } from './components/custom-cursor'
-import { LoadingScreen } from './components/loading-screen'
 import { ScrollProgress } from './components/scroll-progress'
 import { SiteNavbar } from './components/site-navbar'
 import { AboutSection } from './sections/about-section'
@@ -41,13 +40,7 @@ function MouseGlow() {
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(true)
   const [startupError, setStartupError] = useState(null)
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 1800)
-    return () => window.clearTimeout(timer)
-  }, [])
 
   useEffect(() => {
     const onError = (event) => {
@@ -127,7 +120,6 @@ export default function App() {
 
   return (
     <>
-      <LoadingScreen loading={loading} />
       <ScrollProgress />
       <CustomCursor />
       <BackgroundEffects />
